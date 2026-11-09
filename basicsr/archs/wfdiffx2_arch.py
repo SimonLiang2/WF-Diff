@@ -3,7 +3,7 @@ import torch
 from torch import nn
 from basicsr.utils.registry import ARCH_REGISTRY
 from .Padiff_arch.wavelet import DWT, IWT
-from .Padiff_arch.inr_arch import INR
+# from .Padiff_arch.inr_arch import INR
 from .Padiff_arch.diffx2_arch import GaussianDiffusionx2
 
 from .Padiff_arch.cfc_arch import CFC

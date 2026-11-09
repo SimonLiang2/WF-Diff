@@ -1,6 +1,6 @@
-# GENERATE TIME: Sun Nov  3 17:56:40 2024
-# CMD:
-# basicsr/train.py -opt options/train/train_Padiff.yml
+
+
+
 
 name: Wfdiffx2-train-UIEB-bs16
 model_type: WfdiffModel
@@ -8,7 +8,7 @@ scale: 1
 num_gpu: 1
 manual_seed: 10
 
-# dataset and data loader settings
+
 datasets:
   train:
     task: UIE
@@ -24,7 +24,7 @@ datasets:
     use_hflip: true
     use_rot: true
 
-    # data loader
+    
     use_shuffle: true
     num_worker_per_gpu: 8
     batch_size_per_gpu: 16
@@ -40,10 +40,10 @@ datasets:
     io_backend:
       type: disk
 
-# network structures
+
 network_g:
   type: WfDiffx2
-  # Diff参数
+  
   in_channel: 6
   out_channel: 3
   inner_channel: 48
@@ -55,20 +55,20 @@ network_g:
     linear_start: !!float 1e-6
     linear_end: !!float 1e-2
   sample_proc: ddim
-  # INR参数
+  
   local_ensemble: true
   feat_unfold: true
   cell_decode: true
-  # PPG参数
+  
   ppg_input_channels: 3
 
-# path
+
 path:
   pretrain_network_g: ~
   strict_load_g: true
   resume_state: ~
 
-# training settings
+
 train:
   optim_g:
     type: Adam
@@ -82,9 +82,9 @@ train:
     gamma: 0.5
 
   total_iter: 2000000
-  warmup_iter: -1  # no warm up
+  warmup_iter: -1  
 
-  # losses
+  
   Rec_loss:
     type: L1Loss
     loss_weight: 1.0
@@ -102,14 +102,14 @@ train:
     loss_weight: 1.0
     reduction: mean
 
-# validation settings
+
 val:
   val_freq: !!float 5e3
-  #val_freq: !!float 1
+  
   save_img: false
 
   metrics:
-    psnr: # metric name, can be arbitrary
+    psnr: 
       type: calculate_psnr
       crop_border: 2
       test_y_channel: true
@@ -117,13 +117,13 @@ val:
       type: calculate_ssim
       crop_border: 2
       test_y_channel: true
-    # lpips:
-    #   type: calculate_lpips
-    #   crop_border: 2
-    #   test_y_channel: true
+    
+    
+    
+    
     
 
-# logging settings
+
 logger:
   print_freq: 200
   save_checkpoint_freq: !!float 5e3
@@ -132,7 +132,7 @@ logger:
     project: ~
     resume_id: ~
 
-# dist training settings
+
 dist:
   find_unused_parameters: true
 dist_params:

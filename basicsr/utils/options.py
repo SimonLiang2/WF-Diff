@@ -91,7 +91,7 @@ def parse_options(root_path, is_train=True):
     args = parser.parse_args()
 
     # parse yml to dict
-    with open(args.opt, mode='r') as f:
+    with open(args.opt, mode='r', encoding='utf-8-sig') as f:
         opt = yaml.load(f, Loader=ordered_yaml()[0])
 
     # distributed settings
